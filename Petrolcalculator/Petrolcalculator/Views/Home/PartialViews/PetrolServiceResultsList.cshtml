@@ -1,0 +1,80 @@
+﻿@using System.Web.Mvc.Html
+@using Petrolcalculator.Core.Applications.Models.Enums
+@using Petrolcalculator.Core.Applications.Models.Json.ListRequests.Implementation
+@model Petrolcalculator.Models.ViewModels.SearchResultViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="h3" style="padding-bottom: 10px;">
+            Total Number of Results <b><i>@Model.ResultList.Results.Count</i></b> for <b><i>@Model.Options.PetrolType</i></b> sorted by <b><i>@Model.Options.SortOrder</i></b>
+        </div>
+        <hr />
+    </div>
+    <div class="col-md-12">
+        <table class="results">
+            <tr>
+                @Html.Partial($"PartialViews/Table/TableHeader{(@Model.Options.PetrolType == PetrolTypes.All ? "AllPetrolTypes" : "Single")}")
+                <th>
+                    Distance
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Place
+                </th>
+                <th>
+                    ID
+                </th>
+            </tr>
+            @foreach (PetrolDataServiceResultModel element in @Model.ResultList.Results)
+            {
+                <tr>
+                    @Html.Partial($"PartialViews/Table/TableBody{(@Model.Options.PetrolType == PetrolTypes.All ? "AllPetrolTypes" : "Single")}", element)
+                    <td>
+                        @element.Dist km
+                    </td>
+                    <td>
+                        @element.Brand
+                    </td>
+                    <td>
+                        @element.Street @element.HousNumber
+                    </td>
+                    <td>
+                        @element.PostCode @element.Place
+                    </td>
+                    <td>
+                        @element.Id
+                    </td>
+                </tr>
+
+                <div class="PetrolStationDetails" style="display: none">
+                    <p style="display: none" class="lat">
+                        @element.Lat
+                    </p>
+                    <p style="display: none" class="lng">
+                        @element.Lng
+                    </p>
+                    <p class="name">
+                        <b>@element.Brand </b>(@element.Id)
+                    </p>
+                    <p class="adress">
+                        @element.Street @element.HousNumber
+                    </p>
+                    <p class="place">
+                        @element.PostCode @element.Place
+                    </p>
+                    <p class="price">
+                        @Html.Partial($"PartialViews/Table/Map/{(@Model.Options.PetrolType == PetrolTypes.All ? "All" : "Single")}PriceOutput", element)
+                    </p>
+                    <p class="dist">
+                        @element.Dist Km
+                    </p>
+                </div>
+            }
+        </table>
+    </div>
+</div>

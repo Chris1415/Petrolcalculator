@@ -1,0 +1,2 @@
+2016-06-24 22:10:09.5465 Petrolcalculator.Core.Applications.Services.Facade.Implementation.PetrolDataServiceFacade SuccessfullRequest: Error reading JObject from JsonReader. Path '', line 0, position 0.
+2016-06-24 22:10:09.5465 Petrolcalculator.Core.Applications.Services.Facade.Implementation.PetrolDataServiceFacade RequestPetrolStationPricesWithManualJsonSplitting: Request was not successfull

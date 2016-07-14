@@ -1,0 +1,1 @@
+2016-06-27 05:42:48.3715 Petrolcalculator.Core.Applications.Services.Facade.Implementation.PetrolDataServiceFacade DataCollectionLoop: shutdown triggered

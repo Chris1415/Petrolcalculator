@@ -1,0 +1,39 @@
+﻿@model Petrolcalculator.Models.ViewModels.AnalyticsPageViewModel
+
+@{
+    ViewBag.Title = "Analytics";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" id="Head">
+    <h1>Analytics</h1>
+    <p class="lead">
+        Find out more about the petrol price fluctuations
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="background-color: #eeeeee; padding-top: 5px;">
+        <h2>
+            Data Collector
+        </h2>
+        <p>
+            Press the Button to collect new data for analytics or to stop collection <br />
+            Data of all saved Petrol Stations will be collected
+        </p>
+        <div style="padding-bottom: 20px;">
+            <button type="button" class="btn btn-primary btn-lg" style="@Html.Raw(Model.IsDataCollectionThread ? "display : none;" : string.Empty) width: 100%;" id="collectData">Collect Data</button>
+            <button type="button" class="btn btn-danger btn-lg " style="@Html.Raw(!Model.IsDataCollectionThread ? "display : none;" : string.Empty) width: 100%;" id="stopCollectData">Stop Data Collection</button>
+        </div>
+    </div>
+</div>
+
+<div id="HiddenGuidField" style="display: none"></div>
+
+<div id="AnalyticsData">
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/AnalyticsScripts")
+    <script language="javascript" type="text/javascript" src="/Scripts/graph/jquery.flot.js"></script>
+}

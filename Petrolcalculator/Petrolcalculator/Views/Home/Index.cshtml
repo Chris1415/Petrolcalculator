@@ -1,0 +1,21 @@
+﻿@using Petrolcalculator.Core.Applications.Helper
+@{
+    ViewBag.Title = "Petrol Price Finder";
+}
+
+<div class="jumbotron">
+    <h1>Petrol Station Finder</h1>
+    <p class="lead">
+        Find the nearest or cheapest petrol station
+    </p>
+</div>
+
+@Html.Partial("PartialViews/PetrolStationMap")
+
+
+@Html.Partial("PartialViews/PetrolServiceResults")
+
+@section scripts {
+    @Scripts.Render("~/bundles/SearchScripts")
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initPetrolMap&key=@Settings.GoogleMapsApiKey"></script>
+}

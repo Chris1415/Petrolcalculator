@@ -1,0 +1,2 @@
+2016-06-28 07:12:58.8293 Petrolcalculator.Core.Applications.Services.Facade.Implementation.PetrolDataServiceFacade SuccessfullRequest: apikey im falschen Format
+2016-06-28 07:14:23.4137 Petrolcalculator.Core.Applications.Services.Facade.Implementation.PetrolDataServiceFacade SuccessfullRequest: apikey im falschen Format

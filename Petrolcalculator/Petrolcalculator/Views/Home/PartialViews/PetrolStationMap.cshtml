@@ -1,0 +1,71 @@
+﻿@using Petrolcalculator.Core.Applications.Models.Enums
+
+<div class="row">
+    <div class="col-md-12" id="HeadlinePetrolStation">
+        <h2>Petrol Station Map</h2>
+
+        <div class="col-md-12 BoundingBoxInput">
+            <label for="SearchBox" class="noMarginLeft margins "> 
+                <input class="inputBlock" style="width: 1000px;" id="SearchBox" name="SearchBox" placeholder="PLZ, City, Street">
+            </label>
+            @{
+                List<SelectListItem> sortTypes = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text = @PetrolTypes.Diesel.ToString(),
+                    Value = "1",
+                    Selected = true
+                },
+                new SelectListItem
+                {
+                    Text = @PetrolTypes.E5.ToString(),
+                    Value = "2",
+                },
+                new SelectListItem
+                {
+                    Text = @PetrolTypes.E10.ToString(),
+                    Value = "3",
+                },
+                new SelectListItem
+                {
+                    Text = @PetrolTypes.All.ToString(),
+                    Value = "0",
+                }
+            };
+            }
+            @Html.DropDownList("petrolType", sortTypes, new { @class = "DropDown noMarginLeft" })
+
+            @{
+                List<SelectListItem> petrolType = new List<SelectListItem>
+            {
+                 new SelectListItem
+                {
+                    Text = @SortOrder.Dist.ToString(),
+                    Value = "1",
+                    Selected = true
+                },
+                new SelectListItem
+                {
+                    Text = @SortOrder.Price.ToString(),
+                    Value = "0",
+                }
+            };
+            }
+            @Html.DropDownList("sortBy", petrolType, new { @class = "DropDown noMarginLeft" })
+
+            <input class="btn btn-primary" id="SearchForPetrolStations" type="submit" value="Search" />
+            <p id="ErrorLabel" class="ErrorLabel">
+
+            </p>
+
+
+            <div id="HiddenInput" style="display: none"></div>
+            <div id="HiddenPetrolType" style="display: none"></div>
+            <div id="HiddenSortBy" style="display: none"></div>
+        </div>
+        <div class="PetrolMap grayout" id="PetrolStationMap">
+        </div>
+        <hr />
+    </div>
+</div>

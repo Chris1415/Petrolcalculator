@@ -1,0 +1,102 @@
+﻿@using Petrolcalculator.Core.Applications.Models.Statics
+@using Petrolcalculator.Core.Applications.Models.Web
+@model Petrolcalculator.Models.ViewModels.AnalyticsDataViewModel
+
+<div class="row">
+    <div class="col-md-12" id="HeadlineAnalyticsResults">
+        <h3>
+            <b>@Model.ResultCountOutput</b>
+        </h3>
+        @Html.DropDownList("chosenPetrolStationId", @Model.PetrolStations, new {@class = "DropDown noMarginLeft", @style = "width: 330px;"})
+        @Html.DropDownList("chosenDay", @Model.Days, new {@class = "DropDown noMarginLeft", @style = "width: 330px;"})
+        <button style="display: none;" class="btn btn-primary" id="ShowGraphButton">Show Graph</button>
+        <button style="display: none;" class="btn btn-danger-primary" id="HideGraphButton">Hide Graph</button>
+    </div>
+    <div class="col-md-12">
+        <p class="BoundingBoxInput" style="font-size: 20px;font-weight: bold">
+            @foreach (KeyValuePair<string, string> element in Model.AnalyticsEvaluationResults)
+            {
+                @Html.Raw($"{element.Value} <br/>")
+            }     
+        </p>
+    </div>
+    <hr/>
+    <div class="col-md-12" id="graphContainer">
+        <hr />
+        <div id="graph" style="height: 500px;"></div>
+        <div id="graphLegend"></div>
+        <hr />
+    </div>
+
+    <div class="col-md-12">
+        <table class="results">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Time
+                </th>
+                <th>
+                    Diesel
+                </th>
+                <th>
+                    E5
+                </th>
+                <th>
+                    E10
+                </th>
+            </tr>
+            @foreach (PetrolStationAnalyticsModel element in @Model.AnalyticsData)
+            {
+                <tr>
+                    <td>
+                        @element.PetrolStationId
+                    </td>
+                    <td>
+                        @element.RequestDatetime.ToString("dd MMMM")
+                    </td>
+                    <td>
+                        @element.RequestDatetime.ToString("T")
+                    </td>
+                    <td>
+                        @element.Diesel
+                    </td>
+                    <td>
+                        @element.E5
+                    </td>
+                    <td>
+                        @element.E10
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-12" style="text-align: center;">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" onclick="ExecutePartialLoading('@Model.Paging.First.Url');" aria-label="Previous">
+                        <span aria-hidden="true">@Html.Raw(Model.Paging.First.Text)</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                @foreach (PageElement pagingElement in Model.Paging.Elements)
+                {
+                    <li class="page-item @Html.Raw(pagingElement.IsActive ? "active" : string.Empty)">
+                        <a class="page-link" onclick="ExecutePartialLoading('@pagingElement.Url');">@pagingElement.Text</a>
+                    </li>
+                }
+                <li class="page-item">
+                    <a class="page-link" onclick="ExecutePartialLoading('@Model.Paging.Last.Url');" aria-label="Next">
+                        <span aria-hidden="true">@Html.Raw(Model.Paging.Last.Text)</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿.grayout {
+    height: 100%;
+    width: 100%;
+    opacity: 1.0;
+}
+
+table.results {
+    width: 100%;
+}
+
+th {
+    font-size: 24px;
+    text-decoration: underline;
+    text-align: left;
+    padding-left: 10px;
+}
+
+td {
+    text-align: left;
+    font-size: 12px;
+    border-left: solid;
+    border-right: solid;
+    border-color: gray;
+    padding-left: 10px;
+}
+
+td.legendColorBox, td.legendLabel{
+    border: none;
+    width: initial;
+}
+
+#PetrolStationMap {
+    height: 500px;
+    width: 100%;
+}
+
+.InputError {
+    border-color: red;
+    border-style: solid;
+    display: table-cell;
+}
+
+.InputStandard {
+    border-style: inset;
+}
+
+.ErrorLabelInitital {
+    display: none;
+}
+
+.ErrorLabelVisible {
+    display: table-cell;
+}
+
+.ErrorLabel {
+    color: red;
+    font-weight: bold;
+}
+
+.BoundingBoxInput {
+    background-color: #eeeeee;
+    margin-bottom: 10px;
+}
+
+.DropDown {
+    margin: 10px;
+    width: 100px;
+    height: 36px;
+    vertical-align: middle;
+    max-width: initial;
+}
+
+.margins {
+    margin: 10px;
+}
+
+.noMarginLeft {
+    margin-left: 0;
+}
+
+.PetrolMap {
+    margin-bottom: 10px;
+}
+
+.inputBlock {
+    height: 36px;
+    vertical-align: middle;
+}
